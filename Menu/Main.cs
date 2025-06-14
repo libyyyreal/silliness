@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using HarmonyLib;
 using silliness.Classes;
+using silliness.Mods;
 using silliness.Notifications;
 using System;
 using System.Linq;
@@ -104,6 +105,12 @@ namespace silliness.Menu
             catch (Exception exc)
             {
                 Debug.LogError(string.Format("{0} // Error with executing mods at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
+            }
+            if (Time.time > autoSaveDelay)
+            {
+                autoSaveDelay = Time.time + 60f;
+                SettingsMods.SavePreferences();
+                UnityEngine.Debug.Log("preferences saved");
             }
         }
 
@@ -647,5 +654,6 @@ namespace silliness.Menu
         public static int pageNumber = 0;
         public static int buttonsType = 0;
         public static int themeType = 1;
+        public static float autoSaveDelay = Time.time + 60f;
     }
 }
