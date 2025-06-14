@@ -65,6 +65,22 @@ namespace silliness.Menu
                     }
                     ;
                     return;
+                case 2: // Test
+                    GetIndex("theme: [main] [1]").overlapText = "theme: [main] [1]";
+                    bgColors = new ExtGradient { colors = GetMultiGradient(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)) };
+                    titleColors = new ExtGradient { colors = GetMultiGradient(Color.white, Color.white) };
+                    btColors = new ExtGradient[]
+                    {
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)) },
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)) }
+                    };
+                    txtColors = new ExtGradient[]
+                    {
+                        new ExtGradient { colors = GetMultiGradient(Color.white, Color.white) },
+                        new ExtGradient { colors = GetMultiGradient(Color.white, Color.white) }
+                    }
+                    ;
+                    return;
             }
         }
         public static void ChangeThemeTypeBackwards()
@@ -89,6 +105,22 @@ namespace silliness.Menu
                     {
                         new ExtGradient { colors = GetMultiGradient(txtDefaultA, txtDefaultB) },
                         new ExtGradient { colors = GetMultiGradient(txtClickedA, txtClickedB) }
+                    }
+                    ;
+                    return;
+                case 2: // Test
+                    GetIndex("theme: [main] [1]").overlapText = "theme: [main] [1]";
+                    bgColors = new ExtGradient { colors = GetMultiGradient(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)) };
+                    titleColors = new ExtGradient { colors = GetMultiGradient(Color.white, Color.white) };
+                    btColors = new ExtGradient[]
+                    {
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)) },
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)) }
+                    };
+                    txtColors = new ExtGradient[]
+                    {
+                        new ExtGradient { colors = GetMultiGradient(Color.white, Color.white) },
+                        new ExtGradient { colors = GetMultiGradient(Color.white, Color.white) }
                     }
                     ;
                     return;
