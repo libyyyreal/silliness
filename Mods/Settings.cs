@@ -1,5 +1,6 @@
 ﻿using silliness.Classes;
 using silliness.Menu;
+using silliness.Notifications;
 using System.IO;
 using static silliness.Menu.Customization;
 using static silliness.Menu.Main;
@@ -100,6 +101,41 @@ namespace silliness.Mods
             }
             File.WriteAllText("silliness/EnabledMods.txt", text);
             File.WriteAllText("silliness/EnabledTheme.txt", themeType.ToString());
+        }
+        public static void LoadPreferences()
+        {
+            if (Directory.Exists("silliness"))
+            {
+                TurnOffAllMods();
+                try
+                {
+                    string config = File.ReadAllText("silliness/EnabledMods.txt");
+                    string[] activebuttons = config.Split("\n");
+                    for (int index = 0; index < activebuttons.Length; index++)
+                    {
+                        Toggle(activebuttons[index]);
+                    }
+                }
+                catch { }
+                string themer = File.ReadAllText("silliness/EnabledTheme.txt");
+
+                themeType = int.Parse(themer) - 1;
+                Toggle("change theme >");
+            }
+        }
+        public static void TurnOffAllMods()
+        {
+            foreach (ButtonInfo[] buttonlist in Buttons.buttons)
+            {
+                foreach (ButtonInfo v in buttonlist)
+                {
+                    if (v.enabled)
+                    {
+                        Toggle(v.buttonText);
+                    }
+                }
+            }
+            NotifiLib.ClearAllNotifications();
         }
     }
 }

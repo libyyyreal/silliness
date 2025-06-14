@@ -4,7 +4,11 @@ using silliness.Classes;
 using silliness.Mods;
 using silliness.Notifications;
 using System;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -79,6 +83,12 @@ namespace silliness.Menu
                 {
                     fpsObject.text = "FPS: " + Mathf.Ceil(1f / Time.unscaledDeltaTime).ToString();
                 }
+                if (Time.time > autoSaveDelay)
+                {
+                    autoSaveDelay = Time.time + 60f;
+                    SettingsMods.SavePreferences();
+                    UnityEngine.Debug.Log("preferences saved");
+                }
 
                 // Execute Enabled mods
                 foreach (ButtonInfo[] buttonlist in buttons)
@@ -105,12 +115,6 @@ namespace silliness.Menu
             catch (Exception exc)
             {
                 Debug.LogError(string.Format("{0} // Error with executing mods at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
-            }
-            if (Time.time > autoSaveDelay)
-            {
-                autoSaveDelay = Time.time + 60f;
-                SettingsMods.SavePreferences();
-                UnityEngine.Debug.Log("preferences saved");
             }
         }
 
@@ -337,7 +341,7 @@ namespace silliness.Menu
             ButtonInfo[] activeButtons = buttons[buttonsType].Skip(pageNumber * buttonsPerPage).Take(buttonsPerPage).ToArray();
             for (int i = 0; i < activeButtons.Length; i++)
             {
-                CreateButton(i * 0.1f, activeButtons[i]);
+                CreateButton(i * 0.083f, activeButtons[i]);
             }
         }
 
@@ -352,9 +356,9 @@ namespace silliness.Menu
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             gameObject.transform.parent = menu.transform;
             gameObject.transform.rotation = Quaternion.identity;
-            gameObject.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
+            gameObject.transform.localScale = new Vector3(0.09f, 0.9f, 0.07f);
             gameObject.transform.localPosition = new Vector3(0.56f, 0f, 0.28f - offset);
-            gameObject.AddComponent<Classes.Button>().relatedText = method.buttonText;
+            gameObject.AddComponent<silliness.Classes.Button>().relatedText = method.buttonText;
             if (shouldOutline)
             {
                 OutlineObj(gameObject, true);
@@ -395,12 +399,12 @@ namespace silliness.Menu
                 text.color = txtColors[0].colors[0].color;
             }
             text.alignment = TextAnchor.MiddleCenter;
-            text.fontStyle = FontStyle.Italic;
+            text.fontStyle = FontStyle.Normal;
             text.resizeTextForBestFit = true;
             text.resizeTextMinSize = 0;
             RectTransform component = text.GetComponent<RectTransform>();
             component.localPosition = Vector3.zero;
-            component.sizeDelta = new Vector2(.2f, .03f);
+            component.sizeDelta = new Vector2(.2f, .02f);
             component.localPosition = new Vector3(.064f, 0, .111f - offset / 2.6f);
             component.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
         }
@@ -620,6 +624,57 @@ namespace silliness.Menu
             colorChanger.colorInfo = shouldBeEnabled ? btColors[1] : btColors[0];
             colorChanger.Start();
         }
+        public static Texture2D LoadTextureFromURL(string resourcePath, string fileName)
+        {
+            Texture2D texture = new Texture2D(2, 2);
+
+            if (!Directory.Exists("silliness"))
+            {
+                Directory.CreateDirectory("silliness");
+            }
+            if (!File.Exists("silliness/" + fileName))
+            {
+                UnityEngine.Debug.Log("Downloading " + fileName);
+                WebClient stream = new WebClient();
+                stream.DownloadFile(resourcePath, "silliness/" + fileName);
+            }
+
+            byte[] bytes = File.ReadAllBytes("silliness/" + fileName);
+            texture.LoadImage(bytes);
+
+            return texture;
+        }
+        public static Texture2D LoadTextureFromResource(string resourcePath)
+        {
+            Texture2D texture = new Texture2D(2, 2);
+
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourcePath);
+            if (stream != null)
+            {
+                byte[] fileData = new byte[stream.Length];
+                stream.Read(fileData, 0, (int)stream.Length);
+                texture.LoadImage(fileData);
+            }
+            else
+            {
+                Debug.LogError("Failed to load texture from resource: " + resourcePath);
+            }
+            return texture;
+        }
+        public static void OnLaunch()
+        {
+            if (File.Exists("silliness/EnabledMods.txt") || File.Exists("silliness/EnabledTheme.txt"))
+            {
+                try
+                {
+                    SettingsMods.LoadPreferences();
+                }
+                catch
+                {
+                    Task.Delay(1000).ContinueWith(t => SettingsMods.LoadPreferences());
+                }
+            }
+        }
 
         // Variables
         // Important
@@ -650,10 +705,40 @@ namespace silliness.Menu
         public static Color borderColorB = new Color32(255, 255, 255, 255);
         public static Color buBorderColorB = new Color32(255, 255, 255, 255);
 
+        public static Font sans = Font.CreateDynamicFontFromOSFont("Comic Sans MS", 24);
+        public static Font Arial = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+        public static Font Verdana = Font.CreateDynamicFontFromOSFont("Verdana", 24);
+        public static Font agency = Font.CreateDynamicFontFromOSFont("Agency FB", 24);
+        public static Font consolas = Font.CreateDynamicFontFromOSFont("Consolas", 24);
+        public static Font ubuntu = Font.CreateDynamicFontFromOSFont("Candara", 24);
+        public static Font MSGOTHIC = Font.CreateDynamicFontFromOSFont("MS Gothic", 24);
+        public static Font impact = Font.CreateDynamicFontFromOSFont("Impact", 24);
+        public static Font bahnschrift = Font.CreateDynamicFontFromOSFont("Bahnschrift", 24);
+        public static Font calibri = Font.CreateDynamicFontFromOSFont("Calibri", 24);
+        public static Font cambria = Font.CreateDynamicFontFromOSFont("Cambria", 24);
+        public static Font cascadiacode = Font.CreateDynamicFontFromOSFont("Cascadia Code", 24);
+        public static Font cascadiamono = Font.CreateDynamicFontFromOSFont("Cascadia Mono", 24);
+        public static Font constantia = Font.CreateDynamicFontFromOSFont("Constantia", 24);
+        public static Font corbel = Font.CreateDynamicFontFromOSFont("Corbel", 24);
+        public static Font couriernew = Font.CreateDynamicFontFromOSFont("Courier New", 24);
+        public static Font dengxian = Font.CreateDynamicFontFromOSFont("DengXian", 24);
+        public static Font ebrima = Font.CreateDynamicFontFromOSFont("Ebrima", 24);
+        public static Font fangsong = Font.CreateDynamicFontFromOSFont("FangSong", 24);
+        public static Font franklingothic = Font.CreateDynamicFontFromOSFont("Franklin Gothic Medium", 24);
+        public static Font gabriola = Font.CreateDynamicFontFromOSFont("Gabriola", 24);
+        public static Font gadugi = Font.CreateDynamicFontFromOSFont("Gadugi", 24);
+        public static Font georgia = Font.CreateDynamicFontFromOSFont("Georgia", 24);
+        public static Font hololens = Font.CreateDynamicFontFromOSFont("HoloLens MDL2 Assets", 24);
+        public static Font inkfree = Font.CreateDynamicFontFromOSFont("Ink Free", 24);
+        public static Font javanesetext = Font.CreateDynamicFontFromOSFont("Javanese Text", 24);
+        public static Font kaiti = Font.CreateDynamicFontFromOSFont("KaiTi", 24);
+        public static Font lucidaconsole = Font.CreateDynamicFontFromOSFont("Lucida Console", 24);
+
         // Data
         public static int pageNumber = 0;
         public static int buttonsType = 0;
         public static int themeType = 1;
+        public static int fontType = 0;
         public static float autoSaveDelay = Time.time + 60f;
     }
 }
