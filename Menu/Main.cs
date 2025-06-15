@@ -81,7 +81,7 @@ namespace silliness.Menu
                 // Pre-Execution
                 if (fpsObject != null)
                 {
-                    fpsObject.text = "FPS: " + Mathf.Ceil(1f / Time.unscaledDeltaTime).ToString();
+                    fpsObject.text = "FPS: " + Mathf.Ceil(1f / Time.unscaledDeltaTime).ToString() + " VER " + PluginInfo.Version;
                 }
                 if (Time.time > autoSaveDelay)
                 {
@@ -164,19 +164,23 @@ namespace silliness.Menu
                     }
             }.AddComponent<Text>();
             text.font = currentFont;
-            text.text = PluginInfo.Name + " <color=grey>[</color><color=white>" + (pageNumber + 1).ToString() + "</color><color=grey>]</color>";
+            text.text = PluginInfo.Name; //"<color=grey>[</color><color=white>" + (pageNumber + 1).ToString() + "</color><color=grey>]</color>"
             text.fontSize = 1;
             text.color = titleColors.colors[0].color;
             text.supportRichText = true;
-            text.fontStyle = FontStyle.Italic;
+            text.fontStyle = FontStyle.Bold;
             text.alignment = TextAnchor.MiddleCenter;
             text.resizeTextForBestFit = true;
             text.resizeTextMinSize = 0;
             RectTransform component = text.GetComponent<RectTransform>();
             component.localPosition = Vector3.zero;
-            component.sizeDelta = new Vector2(0.28f, 0.05f);
-            component.position = new Vector3(0.06f, 0f, 0.165f);
+            component.sizeDelta = new Vector2(0.28f, 0.055f);
+            component.position = new Vector3(0.06f, 0f, 0.1675f);
             component.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
+            if (customMenuNameActivated == true)
+            {
+                text.text = customMenuName;
+            }
 
             if (fpsCounter)
             {
@@ -199,8 +203,8 @@ namespace silliness.Menu
                 fpsObject.resizeTextMinSize = 0;
                 RectTransform component2 = fpsObject.GetComponent<RectTransform>();
                 component2.localPosition = Vector3.zero;
-                component2.sizeDelta = new Vector2(0.28f, 0.02f);
-                component2.position = new Vector3(0.06f, 0f, 0.135f);
+                component2.sizeDelta = new Vector2(0.22f, 0.015f);
+                component2.position = new Vector3(0.06f, 0f, 0.132f);
                 component2.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
             }
 
@@ -237,7 +241,7 @@ namespace silliness.Menu
                                 parent = canvasObject.transform
                             }
                 }.AddComponent<Text>();
-                discontext.text = "Disconnect";
+                discontext.text = "disconnect";
                 discontext.font = currentFont;
                 discontext.fontSize = 1;
                 discontext.color = txtColors[0].colors[0].color;;
@@ -740,5 +744,6 @@ namespace silliness.Menu
         public static int themeType = 1;
         public static int fontType = 0;
         public static float autoSaveDelay = Time.time + 60f;
+        public static string customMenuName = "";
     }
 }

@@ -1,6 +1,37 @@
-﻿using silliness.Classes;
+﻿using BepInEx;
+using HarmonyLib;
+using Oculus.Platform;
+using Photon.Pun;
+using silliness;
+using silliness.Classes;
+using silliness.Mods;
+using silliness.Notifications;
+using System;
+using System.Windows.Input;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.XR;
+using static silliness.Menu.Buttons;
+using static silliness.Menu.Customization;
+using static silliness.Classes.ButtonInfo;
+using static silliness.Classes.RigManager;
+using static silliness.Mods.SettingsMods;
+using ExitGames.Client.Photon;
+using GorillaNetworking;
+using Photon.Realtime;
+using PlayFab.ExperimentationModels;
+using System.Collections.Generic;
+using UnityEngine.Networking;
+using Photon.Voice.Unity;
+using GorillaTag;
 using static silliness.Menu.Main;
+using UnityEngine.InputSystem.Controls;
 
 namespace silliness.Menu
 {
@@ -26,6 +57,7 @@ namespace silliness.Menu
         public static bool rightHanded = false;
         public static bool disableNotifications = false;
         public static bool shouldOutline = true;
+        public static bool customMenuNameActivated = false;
 
         public static KeyCode keyboardButton = KeyCode.Q;
 
@@ -39,6 +71,18 @@ namespace silliness.Menu
         public static void DisableOutlines()
         {
             shouldOutline = false;
+        }
+        public static void CustomMenuName()
+        {
+            customMenuNameActivated = true;
+            if (!File.Exists("silliness/CustomMenuName.txt"))
+                File.WriteAllText("silliness/CustomMenuName.txt", "your text here");
+
+            customMenuName = File.ReadAllText("silliness/CustomMenuName.txt");
+        }
+        public static void DoNotCustomMenuName()
+        {
+            customMenuNameActivated = false;
         }
         public static void ChangeThemeTypeForwards()
         {

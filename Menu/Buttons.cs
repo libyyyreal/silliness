@@ -39,12 +39,15 @@ namespace silliness.Menu
 
             new ButtonInfo[] { // Customization Settings [5]
                 new ButtonInfo { buttonText = "Return to Settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "returns to the main settings page for the menu"},
+                new ButtonInfo { buttonText = "save preferences", method =() => SettingsMods.SavePreferences(), isTogglable = false, toolTip = "saves your preferecnes"},
+                new ButtonInfo { buttonText = "load preferences", method =() => SettingsMods.LoadPreferences(), isTogglable = false, toolTip = "loads your preferences"},
                 new ButtonInfo { buttonText = "theme: [main] [1]", isTogglable = false},
                 new ButtonInfo { buttonText = "change theme <", method =() => Customization.ChangeThemeTypeBackwards(), isTogglable = false, toolTip = "changes the theme backwards by 1"},
                 new ButtonInfo { buttonText = "change theme >", method =() => Customization.ChangeThemeTypeForwards(), isTogglable = false, toolTip = "changes the theme forwards by 1"},
                 new ButtonInfo { buttonText = "font: [comic sans] [1]", isTogglable = false},
                 new ButtonInfo { buttonText = "change font <", method =() => Customization.ChangeFontTypeBackwards(), isTogglable = false, toolTip = "changes the font backwards by 1"},
                 new ButtonInfo { buttonText = "change font >", method =() => Customization.ChangeFontTypeForwards(), isTogglable = false, toolTip = "changes the font forwards by 1"},
+                new ButtonInfo { buttonText = "custom menu name", disableMethod =() => Customization.DoNotCustomMenuName(), enableMethod =() => Customization.CustomMenuName(), toolTip = "allows you to use a custom menu name, changed in silliness/CustomMenuName"},
             },
         };
     }
