@@ -1,16 +1,11 @@
-# ii's Stupid Template
-ii's Stupid Template is a mod menu template for Gorilla Tag with custom categories and the maximum amount of customization possible. This template is meant for more advanced users, so if you're a new menu creator, this could be difficult for you.
-
-## Do I need permission to use this?
-No, this template is free and public for anyone to use. You are welcome to utilize it for your projects, modify it to suit your needs, and share it with others. We believe in a collaborative and open community where resources are accessible to all.
+# silliness
+silliness is a Mod Menu for Gorilla Tag, striving to be the absolute silliest, stupidest, absolutely diabolical menu out there.
+It also serves as a learning experience for me, due to me not knowing much C#, this helps me learn more about it alongside learning about coding in general.
 
 ---
 
 # Installation
 
-- Download the source code from [here](https://github.com/iiDk-the-actual/iis.Stupid.Template/releases/latest)
-- Change your `<GamePath>` (Gorilla Tag directory) in `Directory.Build.props` if required
-- Change the menu name in `PluginInfo.cs`
-- Edit the menu visuals in `Menu/Settings.cs`
-- Add buttons in `Menu/Buttons.cs`
-- Build with `Ctrl` + `Shift` + `B`, it will get put in your plugins folder automatically
+- Download the menu from the discord at `https://discord.gg/Cnky4TydaU`, or you can go download it from the `releases` page in the github repository.
+- Once downloaded, drag and drop it into your `plugins` folder in bepinex.
+- Load up the game and the menu should be there!
