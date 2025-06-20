@@ -680,9 +680,7 @@ namespace silliness.Menu
             }
         }
 
-        // Variables
-        // Important
-        // Objects
+        // i hate everything about this area
         public static GameObject menu;
         public static GameObject menuBackground;
         public static GameObject reference;
@@ -692,6 +690,9 @@ namespace silliness.Menu
         public static Camera TPC;
         public static Text fpsObject;
 
+        // liby in the studio cooking up DOGSHIT!
+        // this HAS to be here in order for themes to properly work
+        // without it there is no base theme on first launch or a main theme at all
         public static Color bgColorsA = new Color32(255, 186, 251, 255);
         public static Color bgColorsB = new Color32(255, 204, 253, 255);
         public static Color btDefaultA = new Color32(255, 186, 251, 255);
@@ -704,11 +705,8 @@ namespace silliness.Menu
         public static Color txtClickedB = new Color32(255, 255, 255, 255);
         public static Color titleColorsA = new Color32(255, 255, 255, 255);
         public static Color titleColorsB = new Color32(255, 255, 255, 255);
-        public static Color borderColor = new Color32(255, 155, 255, 255);
-        public static Color buBorderColor = new Color32(255, 255, 255, 255);
-        public static Color borderColorB = new Color32(255, 255, 255, 255);
-        public static Color buBorderColorB = new Color32(255, 255, 255, 255);
 
+        // the fonts of doom and despair
         public static Font sans = Font.CreateDynamicFontFromOSFont("Comic Sans MS", 24);
         public static Font Arial = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         public static Font Verdana = Font.CreateDynamicFontFromOSFont("Verdana", 24);
@@ -738,7 +736,7 @@ namespace silliness.Menu
         public static Font kaiti = Font.CreateDynamicFontFromOSFont("KaiTi", 24);
         public static Font lucidaconsole = Font.CreateDynamicFontFromOSFont("Lucida Console", 24);
 
-        // Data
+        // like zoinks scoob! theres a fuck ton of integers and other shit making the area look like dogshit down here! RUH ROH RAGGY!
         public static int pageNumber = 0;
         public static int buttonsType = 0;
         public static int themeType = 1;
