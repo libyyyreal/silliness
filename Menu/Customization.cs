@@ -123,6 +123,36 @@ namespace silliness.Menu
                         new ExtGradient { colors = GetMultiGradient(new Color32(2, 0, 94, 255), new Color32(2, 0, 94, 255)) }
                     };
                     return;
+                case 3: // SNES
+                    GetIndex("theme: [Main] [1]").overlapText = "theme: [SNES] [3]";
+                    bgColors = new ExtGradient { colors = GetMultiGradient(new Color32(188, 188, 198, 255), new Color32(166, 166, 175, 255)) };
+                    titleColors = new ExtGradient { colors = GetMultiGradient(new Color32(220, 226, 240, 255), new Color32(220, 226, 240, 255)) };
+                    btColors = new ExtGradient[]
+                    {
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(99, 80, 183, 255), new Color32(80, 72, 165, 255)) },
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(169, 167, 215, 255), new Color32(152, 150, 193, 255)) }
+                    };
+                    txtColors = new ExtGradient[]
+                    {
+                        new ExtGradient { colors = GetMultiGradient(new Color32(220, 226, 240, 255), new Color32(220, 226, 240, 255)) },
+                        new ExtGradient { colors = GetMultiGradient(new Color32(220, 226, 240, 255), new Color32(220, 226, 240, 255)) }
+                    };
+                    return;
+                case 4: // Folly
+                    GetIndex("theme: [Main] [1]").overlapText = "theme: [Folly] [4]";
+                    bgColors = new ExtGradient { colors = GetMultiGradient(new Color32(10, 0, 3, 255), new Color32(14, 0, 4, 255)) };
+                    titleColors = new ExtGradient { colors = GetMultiGradient(new Color32(255, 0, 79, 255), new Color32(252, 0, 78, 255)) };
+                    btColors = new ExtGradient[]
+                    {
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(10, 0, 3, 255), new Color32(14, 0, 4, 255)) },
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(255, 0, 79, 255), new Color32(252, 0, 78, 255)) }
+                    };
+                    txtColors = new ExtGradient[]
+                    {
+                        new ExtGradient { colors = GetMultiGradient(new Color32(255, 0, 79, 255), new Color32(252, 0, 78, 255)) },
+                        new ExtGradient { colors = GetMultiGradient(new Color32(10, 0, 3, 255), new Color32(14, 0, 4, 255)) }
+                    };
+                    return;
                 case 5: // ii's Stupid Menu
                     GetIndex("theme: [Main] [1]").overlapText = "theme: [ii's Stupid Menu] [5]";
                     bgColors = new ExtGradient { colors = GetMultiGradient(new Color32(255, 128, 0, 128), new Color32(255, 102, 0, 128)) };
@@ -177,6 +207,36 @@ namespace silliness.Menu
                     {
                         new ExtGradient { colors = GetMultiGradient(new Color32(127, 124, 255, 255), new Color32(127, 124, 255, 255)) },
                         new ExtGradient { colors = GetMultiGradient(new Color32(2, 0, 94, 255), new Color32(2, 0, 94, 255)) }
+                    };
+                    return;
+                case 3: // SNES
+                    GetIndex("theme: [Main] [1]").overlapText = "theme: [SNES] [3]";
+                    bgColors = new ExtGradient { colors = GetMultiGradient(new Color32(188, 188, 198, 255), new Color32(166, 166, 175, 255)) };
+                    titleColors = new ExtGradient { colors = GetMultiGradient(new Color32(220, 226, 240, 255), new Color32(220, 226, 240, 255)) };
+                    btColors = new ExtGradient[]
+                    {
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(99, 80, 183, 255), new Color32(80, 72, 165, 255)) },
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(169, 167, 215, 255), new Color32(152, 150, 193, 255)) }
+                    };
+                    txtColors = new ExtGradient[]
+                    {
+                        new ExtGradient { colors = GetMultiGradient(new Color32(220, 226, 240, 255), new Color32(220, 226, 240, 255)) },
+                        new ExtGradient { colors = GetMultiGradient(new Color32(220, 226, 240, 255), new Color32(220, 226, 240, 255)) }
+                    };
+                    return;
+                case 4: // Folly
+                    GetIndex("theme: [Main] [1]").overlapText = "theme: [Folly] [4]";
+                    bgColors = new ExtGradient { colors = GetMultiGradient(new Color32(10, 0, 3, 255), new Color32(14, 0, 4, 255)) };
+                    titleColors = new ExtGradient { colors = GetMultiGradient(new Color32(255, 0, 79, 255), new Color32(252, 0, 78, 255)) };
+                    btColors = new ExtGradient[]
+                    {
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(10, 0, 3, 255), new Color32(14, 0, 4, 255)) },
+                        new ExtGradient{ colors = GetMultiGradient(new Color32(255, 0, 79, 255), new Color32(252, 0, 78, 255)) }
+                    };
+                    txtColors = new ExtGradient[]
+                    {
+                        new ExtGradient { colors = GetMultiGradient(new Color32(255, 0, 79, 255), new Color32(252, 0, 78, 255)) },
+                        new ExtGradient { colors = GetMultiGradient(new Color32(10, 0, 3, 255), new Color32(14, 0, 4, 255)) }
                     };
                     return;
                 case 5: // ii's Stupid Menu

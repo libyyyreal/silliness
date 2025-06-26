@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using WebSocketSharp;
 using static silliness.Menu.Buttons;
 using static silliness.Menu.Customization;
 
@@ -81,7 +82,7 @@ namespace silliness.Menu
                 // Pre-Execution
                 if (fpsObject != null)
                 {
-                    fpsObject.text = "FPS: " + Mathf.Ceil(1f / Time.unscaledDeltaTime).ToString() + " VER " + PluginInfo.Version;
+                    fpsObject.text = "FPS: " + Mathf.Ceil(1f / Time.unscaledDeltaTime).ToString() + " VER: " + PluginInfo.Version;
                 }
                 if (Time.time > autoSaveDelay)
                 {
@@ -115,6 +116,11 @@ namespace silliness.Menu
             catch (Exception exc)
             {
                 Debug.LogError(string.Format("{0} // Error with executing mods at {1}: {2}", PluginInfo.Name, exc.StackTrace, exc.Message));
+            }
+            if (!HasLoaded)
+            {
+                HasLoaded = true;
+                OnLaunch();
             }
         }
 
@@ -667,16 +673,19 @@ namespace silliness.Menu
         }
         public static void OnLaunch()
         {
-            if (File.Exists("silliness/EnabledMods.txt") || File.Exists("silliness/EnabledTheme.txt"))
             {
-                try
+                if (File.Exists("silliness/EnabledMods.txt") || File.Exists("silliness/EnabledTheme.txt"))
                 {
-                    SettingsMods.LoadPreferences();
+                    try
+                    {
+                        SettingsMods.LoadPreferences();
+                    }
+                    catch
+                    {
+                        Task.Delay(1000).ContinueWith(t => SettingsMods.LoadPreferences());
+                    }
                 }
-                catch
-                {
-                    Task.Delay(1000).ContinueWith(t => SettingsMods.LoadPreferences());
-                }
+                Debug.LogError(string.Format("onlaunch activated"));
             }
         }
 
@@ -743,5 +752,6 @@ namespace silliness.Menu
         public static int fontType = 0;
         public static float autoSaveDelay = Time.time + 60f;
         public static string customMenuName = "";
+        public static bool HasLoaded = false;
     }
 }
