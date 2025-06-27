@@ -58,6 +58,7 @@ namespace silliness.Menu
         public static bool disableNotifications = false;
         public static bool shouldOutline = true;
         public static bool customMenuNameActivated = false;
+        public static bool highQualityText = false;
 
         public static KeyCode keyboardButton = KeyCode.Q;
 
@@ -71,6 +72,14 @@ namespace silliness.Menu
         public static void DisableOutlines()
         {
             shouldOutline = false;
+        }
+        public static void EnableHQText()
+        {
+            highQualityText = true;
+        }
+        public static void DisableHQText()
+        {
+            highQualityText = false;
         }
         public static void CustomMenuName()
         {

@@ -46,6 +46,7 @@ namespace silliness.Menu
                 new ButtonInfo { buttonText = "change font <", method =() => Customization.ChangeFontTypeBackwards(), isTogglable = false, toolTip = "changes the font backwards by 1"},
                 new ButtonInfo { buttonText = "change font >", method =() => Customization.ChangeFontTypeForwards(), isTogglable = false, toolTip = "changes the font forwards by 1"},
                 new ButtonInfo { buttonText = "custom menu name", disableMethod =() => Customization.DoNotCustomMenuName(), enableMethod =() => Customization.CustomMenuName(), toolTip = "allows you to use a custom menu name, changed in silliness/CustomMenuName.txt"},
+                new ButtonInfo { buttonText = "high quality text", disableMethod =() => Customization.DisableHQText(), enableMethod =() => Customization.EnableHQText(), toolTip = "makes text more readable and less blurry"},
                 new ButtonInfo { buttonText = "save preferences", method =() => SettingsMods.SavePreferences(), isTogglable = false, toolTip = "saves your preferences"},
                 new ButtonInfo { buttonText = "load preferences", method =() => SettingsMods.LoadPreferences(), isTogglable = false, toolTip = "loads your preferences"},
             },

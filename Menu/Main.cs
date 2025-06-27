@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using WebSocketSharp;
 using static silliness.Menu.Buttons;
 using static silliness.Menu.Customization;
@@ -160,6 +161,10 @@ namespace silliness.Menu
             canvasObject.AddComponent<GraphicRaycaster>();
             canvas.renderMode = RenderMode.WorldSpace;
             canvasScaler.dynamicPixelsPerUnit = 1000f;
+            if (highQualityText == true)
+            {
+                canvasScaler.dynamicPixelsPerUnit = 2000f;
+            }
 
             // Title and FPS
             Text text = new GameObject
