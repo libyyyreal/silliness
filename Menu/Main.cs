@@ -422,6 +422,12 @@ namespace silliness.Menu
             component.sizeDelta = new Vector2(.2f, .02f);
             component.localPosition = new Vector3(.064f, 0, .111f - offset / 2.6f);
             component.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
+            if (overflowText == true)
+            {
+                component.sizeDelta = new Vector2(.1f, .012f);
+                text.horizontalOverflow = HorizontalWrapMode.Overflow;
+                text.verticalOverflow = VerticalWrapMode.Truncate;
+            }
         }
 
         public static void RecreateMenu()
