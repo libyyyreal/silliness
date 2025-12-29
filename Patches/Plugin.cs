@@ -1,6 +1,11 @@
 ﻿using BepInEx;
 using silliness.Patches;
+using System;
 using System.ComponentModel;
+using UnityEngine;
+using silliness.Classes;
+using static silliness.Mods.SettingsMods;
+//using Console = silliness.Classes.Console;
 
 namespace silliness.Patches
 {
@@ -17,5 +22,23 @@ namespace silliness.Patches
         {
             Menu.RemoveHarmonyPatches();
         }
+        /*void Start() =>
+        GorillaTagger.OnPlayerSpawned(OnPlayerSpawned);
+
+        void OnPlayerSpawned()
+        {
+            string ConsoleGUID = $"goldentrophy_Console_{Console.ConsoleVersion}";
+            GameObject ConsoleObject = GameObject.Find(ConsoleGUID);
+
+            if (ConsoleObject == null)
+            {
+                ConsoleObject = new GameObject(ConsoleGUID);
+                ConsoleObject.AddComponent<CoroutineManager>();
+                ConsoleObject.AddComponent<Console>();
+            }
+
+            if (ServerData.ServerDataEnabled)
+                ConsoleObject.AddComponent<ServerData>();
+        }*/
     }
 }

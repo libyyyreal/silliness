@@ -15,7 +15,7 @@ namespace silliness.Classes
 		{
 			if (Time.time > buttonCooldown && collider == buttonCollider && menu != null)
 			{
-                buttonCooldown = Time.time + 0.2f;
+                buttonCooldown = Time.time + 0.15f;
                 GorillaTagger.Instance.StartVibration(rightHanded, GorillaTagger.Instance.tagHapticStrength / 2f, GorillaTagger.Instance.tagHapticDuration / 2f);
                 GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(8, rightHanded, 0.4f);
 				Toggle(relatedText);

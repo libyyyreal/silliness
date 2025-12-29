@@ -45,7 +45,7 @@ namespace silliness.Notifications
                 }
             }.AddComponent<Text>();
             Testtext.text = "";
-            Testtext.fontSize = 30;
+            Testtext.fontSize = 20;
             Testtext.font = currentFont;
             Testtext.rectTransform.sizeDelta = new Vector2(450f, 210f);
             Testtext.alignment = TextAnchor.LowerLeft;

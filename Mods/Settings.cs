@@ -4,36 +4,12 @@ using silliness.Notifications;
 using System.IO;
 using static silliness.Menu.Customization;
 using static silliness.Menu.Main;
+using static silliness.Mods.Settings.MovementSettings;
 
 namespace silliness.Mods
 {
     internal class SettingsMods
     {
-        public static void EnterSettings()
-        {
-            buttonsType = 1;
-        }
-
-        public static void MenuSettings()
-        {
-            buttonsType = 2;
-        }
-
-        public static void MovementSettings()
-        {
-            buttonsType = 3;
-        }
-
-        public static void ProjectileSettings()
-        {
-            buttonsType = 4;
-        }
-
-        public static void CustomizationSettings()
-        {
-            buttonsType = 5;
-        }
-
         public static void RightHand()
         {
             rightHanded = true;
@@ -74,6 +50,16 @@ namespace silliness.Mods
             disconnectButton = false;
         }
 
+        public static void EnableDiscordText()
+        {
+            discordtext = true;
+        }
+
+        public static void DisableDiscordText()
+        {
+            discordtext = false;
+        }
+
         public static void SavePreferences()
         {
             string text = "";
@@ -81,7 +67,7 @@ namespace silliness.Mods
             {
                 foreach (ButtonInfo v in buttonlist)
                 {
-                    if (v.enabled && v.buttonText != "save preferences")
+                    if (v.enabled && v.buttonText != "Save Preferences")
                     {
                         if (text == "")
                         {
@@ -100,7 +86,10 @@ namespace silliness.Mods
                 Directory.CreateDirectory("silliness");
             }
             File.WriteAllText("silliness/EnabledMods.txt", text);
-            File.WriteAllText("silliness/EnabledTheme.txt", themeType.ToString());
+            File.WriteAllText("silliness/CurrentTheme.txt", themeType.ToString());
+            File.WriteAllText("silliness/CurrentFont.txt", fontType.ToString());
+            File.WriteAllText("silliness/CurrentFlySpeed.txt", flyType.ToString());
+            File.WriteAllText("silliness/CurrentSpeedboost.txt", speedboostType.ToString());
         }
         public static void LoadPreferences()
         {
@@ -117,10 +106,19 @@ namespace silliness.Mods
                     }
                 }
                 catch { }
-                string themer = File.ReadAllText("silliness/EnabledTheme.txt");
+                string themer = File.ReadAllText("silliness/CurrentTheme.txt");
+                string fonter = File.ReadAllText("silliness/CurrentFont.txt");
+                string flyspeeder = File.ReadAllText("silliness/CurrentFlySpeed.txt");
+                string speedbooster = File.ReadAllText("silliness/CurrentSpeedboost.txt");
 
                 themeType = int.Parse(themer) - 1;
-                Toggle("change theme >");
+                Toggle("Change Theme >");
+                fontType = int.Parse(fonter) - 1;
+                Toggle("Change Font >");
+                flyType = int.Parse(flyspeeder) - 1;
+                Toggle("Change Fly Speed [Normal]");
+                speedboostType = int.Parse(speedbooster) - 1;
+                Toggle("Change Speedboost [Normal]");
             }
         }
         public static void TurnOffAllMods()
