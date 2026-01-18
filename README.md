@@ -6,6 +6,6 @@ It also serves as a learning experience for me, due to me not knowing much C#, t
 
 # installation
 
-- Download the menu from the discord at `https://discord.gg/Cnky4TydaU`, or you can go download it from the `releases` page in the github repository.
+- Download the menu from the discord at `dsc.gg/silliness`, or you can go download it from the `releases` page in the github repository.
 - Once downloaded, drag and drop it into your `plugins` folder in bepinex.
 - Load up the game and the menu should be there!
